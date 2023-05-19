@@ -96,12 +96,23 @@
 
                         <h2 class="section-heading">Finding Account Data</h2>
 
-                        <p>The MITRE ATT&CK framework lists a variety of persistence approaches to use in 
-                            Windows, Linux, and macOS environments. Webshells, WMI event subscriptions,
-                             registry run keys, and the use of legitimate accounts are a few common techniques.
-                              Since adversaries frequently employ many persistence strategies concurrently,
-                               thorough coverage is essential for efficient detection.</p>
+                        <p>In the realm of Android forensics, uncovering account data can be of paramount importance.
+                            This can encompass information related to accounts (email addresses, usernames, associated services, etc.)
+                            , providing insights into the user's digital footprint. <br><br>
+                            Through the Accounts_ce report function of the ALEAPP processed data, I could find the twitter handle
+                            and an e-mail account.
+
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/account_report.png" alt="
+                        Image showcasing the account information found  " />
                     
+                        <p>To dive further in, the processed data also has information on the Firebase Cloud Messaging (FCM) Queued Messages
+                            of the user's twitter activity such as tweets.
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/tweets_fcm_dump.png" alt="
+                        Image showcasing the account information found  " />
+
+
                         <h2 class="section-heading">Detection Opportunities and Best Practices: </h2>
                         <p>Detecting persistence requires a multi-faceted approach.
                              Some recommended practices include:</p>
