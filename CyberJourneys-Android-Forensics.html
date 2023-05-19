@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>[Cyber Journeys] Android Forensics</title>
+        <link rel="icon" type="image/x-icon" href="assets/CyberBits-Logo.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">CyberBits by Kairos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">All Posts</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/persistence.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>[Cyber Journeys] Android Forensics</h1>
+                            
+                            <span class="meta">
+                                Posted by Kairos Tay
+                                on 19 May, 2023
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                       
+                        <h2 class="section-heading">Background: </h2>
+                        <p> At the beginning of this month (5 May 2023), 
+                            I had the opportunity to participate in the Magnet User Summit CTF 
+                            organised by Magnet Forensics. One of the challenges that caught my attention
+                             was the Android Forensics category. At that point, I was just 
+                             starting to delve into the world of Cybersecurity, and I wasn't very familiar 
+                             with forensics. Instead of relying on specialised tools,
+                              I primarily worked with the raw data provided in the Logical Data.
+                            <br><br>
+                            But now, things have changed! 
+                            I've become more acquainted with forensics tools like ALEAPP, and 
+                            I've gained a deeper understanding of their capabilities. 
+                            In this blog post, I'll be sharing my experiences and documenting the findings 
+                            I've made using these tools.
+                        </p>
+                        <h2 class="section-heading">Introduction: </h2>
+                        
+                        <p>Adversaries can sustain unauthorised access to infiltrated systems thanks to persistence
+                             mechanisms, but they also provide opportunities for detection. In this article,
+                              we examine the importance of persistence in cybersecurity and how businesses can 
+                              use detection techniques to effectively combat these attacks.
+                        </p>
+                        <h2 class="section-heading">Finding Device Information </h2>
+
+                        <p>When conducting Android forensics (be it for this CTF or not :P ), one of the crucial aspects
+                            is gathering device information. Using ALEAPP, I could analyse the system logs, databases and 
+                            other artifacts. <br><br> Here is an example of the usage of ALEAPP to find the information of 
+                            the device:
+                            
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/device_info.png" alt="
+                        Image showcasing the device information of the Android system  " />
+                        
+                        <p>And this was conveniently the solution for a few CTF challenges too! These pieces of information
+                            was found in the index.html file of the data after being processed by ALEAPP.
+                        </p>
+
+                        <h2 class="section-heading">Finding Account Data</h2>
+
+                        <p>The MITRE ATT&CK framework lists a variety of persistence approaches to use in 
+                            Windows, Linux, and macOS environments. Webshells, WMI event subscriptions,
+                             registry run keys, and the use of legitimate accounts are a few common techniques.
+                              Since adversaries frequently employ many persistence strategies concurrently,
+                               thorough coverage is essential for efficient detection.</p>
+                    
+                        <h2 class="section-heading">Detection Opportunities and Best Practices: </h2>
+                        <p>Detecting persistence requires a multi-faceted approach.
+                             Some recommended practices include:</p>
+                             <ol>
+                                <li><strong>PowerShell Logging</strong>: Makes it easier to spot suspicious activity and encoded commands, giving information
+                                    on tasks related to persistence.
+                                </li>
+                                <li><strong>Sysmon and PowerShell CLI</strong>: Organisations can examine parent command lines and binary launches using
+                                Sysmon and PowerShell's CLI, assisting in the disccovery of persistence activities.</li>
+                                <li><strong>Sysinternals Autoruns</strong>: Sysinternals usage Administrators can use Autoruns 
+                                    to look for auto-run entries throughout the system, assisting in the discovery of malicious
+                                     persistence techniques.</li>
+                                <li><strong>OSQuery</strong>: Utilising OSQuery's built-in WMI queries makes it easier to identify malicious 
+                                    WMI objects quickly, improving response times.</li>
+                                <li><strong>Anti Malware Scan Interface (AMSI)</strong>: The detection and prevention of malicious activity within persistent scripts
+                                     are made possible by AMSI integration with security systems.</li>
+                                <li><strong>Endpoint Detection and Response (EDR)</strong>The use of an EDR solution offers thorough visibility into persistence 
+                                    strategies, assisting in the monitoring and analysis of threats connected to persistence.</li>
+                              </ol>
+                        <p>If that didn't make sense to you, here are some explanations on the jargon:</p>
+                        <ul>
+                            <li><strong>Sysmon</strong> is a Windows system monitoring tool developed by Microsoft that provides detailed visibility into system activities and helps detect and analyse security-related events.</li>
+                            <li><strong>Sysinternals Autoruns</strong> is a Windows utility that allows users to view and manage programs, processes, services, drivers, and other startup items to optimise system performance and troubleshoot issues.</li>
+                            <li><strong>OSQuery</strong> is an open-source, cross-platform framework that enables SQL-based querying of operating system and system-level data, providing a unified interface for monitoring, analysis, and security purposes.</li>
+                            <li><strong>WMI (Windows Management Instrumentation)</strong> is a management infrastructure in Windows that allows administrators to gather information, perform system tasks, and automate management tasks on local and remote systems.</li>
+
+                        </ul>
+                        
+                        <h2 class="section-heading">Adapting to Cloud Environments and Knowledge Sharing: </h2>
+                        <p>Adapting detection strategies for persistence becomes increasingly important as businesses move to cloud settings. Comprehensive protection
+                             is ensured by using a flexible strategy and relying on security tools designed specifically for 
+                             the cloud. Through webinars, conferences, and industry forums, the cybersecurity community can 
+                             collaborate and share expertise to develop defense tactics against persistence-based attacks.</p>
+
+                        <h2 class="section-heading">Conclusion: </h2>
+                        <p>Although persistence strategies give attackers the upper hand, 
+                            they also give room for discovery. Organisations can improve
+                             their ability to recognise threats and respond to them by using a variety 
+                             of detection techniques and understanding common persistence mechanisms. 
+                             Maintaining alertness, adjusting to new technologies, and promoting cooperation 
+                             within the cybersecurity community are all components of an effective defence strategy. 
+                             The capacity to recognise persistence strengthens the security of digital assets by 
+                             exposing the actions of adversaries.</p>
+                             
+                              <p>References:<br>1. MITRE ATT&CK Deep Dive: Persistence - Red Canary
+                                </p>
+                               
+
+   
+                       
+
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="mailto:kairostay@gmail.com">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fa-solid fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://linkedin.com/in/kairoshestiatay/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Kairos-T">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://t.me/kairostay">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CyberBits 2023</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
