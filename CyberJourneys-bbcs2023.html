@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>[Cyber Journeys] Android Forensics</title>
+        <link rel="icon" type="image/x-icon" href="assets/CyberBits-Logo.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">CyberBits by Kairos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">All Posts</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/androidforensics/digital_forensics.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>[Cyber Journeys] BBCS Conference 2023</h1>
+
+                            <span class="meta">
+                                Posted by Kairos Tay
+                                on 31 May, 2023
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+                        <p><strong>""
+                        </strong></p>
+
+                        <h2 class="section-heading">Finding Device Information </h2>
+
+                        <p>When conducting Android forensics (be it for this CTF or not :P ), one of the crucial aspects
+                            is gathering device information. Using ALEAPP, I could analyse the system logs, databases and
+                            other artifacts. <br><br> Here is an example of the usage of ALEAPP to find the information of
+                            the device:
+
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/device_info.png" alt="
+                        Image showcasing the device information of the Android system  " />
+
+                        <p>And this was conveniently the solution for a few CTF challenges too! These pieces of information
+                            was found in the index.html file of the data after being processed by ALEAPP.
+                        </p>
+
+                        <h2 class="section-heading">Finding Account Data</h2>
+
+                        <p>In the realm of Android forensics, uncovering account data can be of paramount importance.
+                            This can encompass information related to accounts (email addresses, usernames, associated services, etc.)
+                            , providing insights into the user's digital footprint. <br><br>
+                            Through the Accounts_ce report function of the ALEAPP processed data, I could find the twitter handle
+                            and an e-mail account.
+
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/account_report.png" alt="
+                        Image showcasing the account information found  " />
+
+                        <p>To dive further in, the processed data also has information on the Firebase Cloud Messaging (FCM) Queued Messages
+                            of the user's twitter activity such as tweets.
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/tweets_fcm_dump.png" alt="
+                        Image showcasing the account information found  " />
+
+
+                        <h2 class="section-heading">Chrome Login Data</h2>
+
+                        <p> With ALEAPP, I was able to derive the Chrome login data of the user, uncovering saved
+                            usernames, passwords and associated websites. In the digital forensics aspect, this invaluable
+                            information not only sheds light on the user's online accounts but also offers
+                            potential avenues for further investigation.
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/Chrome_Login_Data.png" alt="
+                        Image showcasing the account information found from Chrome Login Data logs." />
+
+                        <p> To say the least, I was rather amused that one could derive passwords from just the Logical Data of
+                            a device. It's astonishing to think that a seemingly innocuous collection of data could
+                        hold such sensitive and personal infromation.</p>
+
+
+                        <h2 class="section-heading">Battery Percentage Information </h2>
+                        <p>I was pretty surprised to discover that there was actually data associated with
+                            battery percentages in Android devices, and I didn't think that there was any significance of this
+                            seemingly mundane piece of information.
+                        </p>
+                        <img class="img-fluid mb-3" src="assets/img/androidforensics/battery_report.png" alt="
+                        Image showcasing the battery log found  " />
+
+                        <p>However, upon further research, I found out that battery logs can actually be useful, serving
+                            as crucial component in reconstructing the timelines of events, uncovering anomalies. It also
+                            provides a perspective on the usage patterns and can challenge witness statements or other digital evidence.
+                        </p>
+
+                        <h2 class="section-heading"></p>
+
+                        <h2 class="section-heading">Conclusion: </h2>
+                        <p>To think that I have only scratched the surface of forensic tools and techniqiues is truly mind-boggling.
+                            I realised that there is so much more to explore and discover, especially with the continuous expansion of the
+                            array of powerful forensic tools available.  <br><br> It's humbling to consider the vast amount of knolwedge and expertise that
+                            forensic professionals possess in this field, and the more I delve deeper into digital forensics, the more I realise
+                            that I have merely touched the tip of the iceberg. <br><br> I have to say though, this realisation fuels my curiousity
+                            and motivates me to continue my journey in the world of digital forensics, and I am more than excited to dive deeper
+                            into the vast sea of forensic tools and techniques.
+                        </p>
+
+                              <p>References:<br>1. Magnet User Summit CTF'23<br>
+                                <a href="https://dfir101.wordpress.com/2023/05/12/magnet-forensics-virtual-ctf-may-2023-android-challenges-walkthrough-1/">2. Magnet Forensics Virtual CTF - Android Challenges Walkthrough (1/?)</a>
+                            </p>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="mailto:kairostay@gmail.com">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fa-solid fa-envelope fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://linkedin.com/in/kairoshestiatay/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Kairos-T">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://t.me/kairostay">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-telegram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; CyberBits 2023</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
