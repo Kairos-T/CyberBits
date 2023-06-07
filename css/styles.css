@@ -10800,3 +10800,13 @@ header.masthead .post-heading .meta a {
   clear: both;
   display: table;
 }
+
+.fade-in {
+  opacity: 0; /* Start with opacity set to 0 */
+  animation: fade-in 1s ease-in-out forwards; /* Apply the animation */
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; } /* Fade in starts with 0% opacity */
+  100% { opacity: 1; } /* Fade in ends with 100% opacity */
+}
