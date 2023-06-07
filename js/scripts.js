@@ -27,3 +27,24 @@ window.addEventListener('DOMContentLoaded', () => {
         scrollPos = currentTop;
     });
 })
+
+// Select the elements with the "fade-in" class
+const elements = document.querySelectorAll('.fade-in');
+
+// Create an intersection observer instance
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Add the "fade-in" class to the intersecting element
+      entry.target.classList.add('fade-in');
+
+      // Stop observing the element
+      observer.unobserve(entry.target);
+    }
+  });
+});
+
+// Observe each element
+elements.forEach(element => {
+  observer.observe(element);
+});
